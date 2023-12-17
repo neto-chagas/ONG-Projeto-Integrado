@@ -1,0 +1,72 @@
+@import url(./index.css);
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,200&display=swap");
+
+.area-input-style {
+
+  border: 0.5px solid rgb(140, 197, 222);
+
+}
+
+.btn-input-style{
+
+  border: 0.5px solid rgb(140, 197, 222);
+
+  background-color: #ffff;
+
+  transition: 160ms;
+
+}
+
+.btn-input-style:hover{
+
+  transition: 160ms;
+
+  background-color: rgb(140, 197, 222);
+
+  color: #ffff;
+
+}
+
+.text-main-1{
+
+
+  text-align: center;
+
+  color: rgb(65, 145, 180);
+
+  border: 0.5px solid rgb(140, 197, 222);
+
+  padding: 2rem;
+
+  gap: 2rem;
+
+}
+
+.cadastro-btn-main-1 {
+  font-size: 1.35rem;
+
+  text-decoration: none;
+
+  color: black;
+
+  background-color: #ffff;
+
+  border: 0.5px solid rgb(140, 197, 222);
+
+  transition: 160ms;
+}
+
+.cadastro-btn-main-1:hover {
+  background-color: rgb(140, 197, 222);
+
+  color: #ffff;
+
+  transition: 160ms;
+}
+
+#formulario-main-1 {
+
+  border: 1px solid rgb(140, 197, 222);
+
+}

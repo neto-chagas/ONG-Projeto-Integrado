@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,200&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+
+  height: 100%;
+}
+
+.bg-header {
+  background-color: rgb(201, 217, 224);
+}
+
+.bg-header-buttom {
+  height: 100%;
+  font-family: "Nunito", sans-serif;
+  color: black;
+  transition: 160ms;
+  position: relative;
+}
+
+.bg-header-buttom::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 5px;
+  background-color: rgb(140, 197, 222);
+  transition: 160ms;
+}
+
+.bg-header-buttom:hover::before {
+  width: 100%;
+}
+
+.bg-header-buttom:hover {
+  transition: 160ms;
+  font-weight: bold;
+}
+
+.main-text {
+  font-family: "Raleway", sans-serif;
+}
+
+.registro-btn-main-1 {
+  font-size: 1.35rem;
+
+  color: black;
+
+  background-color: #ffff;
+
+  transition: 120ms;
+}
+
+.registro-btn-main-1:hover {
+  background-color: rgb(140, 197, 222);
+
+  color: #ffff;
+
+  transition: 120ms;
+}
+
+.cor-h1{
+
+  color: rgb(140, 197, 222);
+
+}
+
+.butao{
+
+  font-size: 1.35rem;
+
+  color: black;
+
+  background-color: #ffff;
+
+  transition: 120ms;
+
+}
+
+.butao:hover {
+  background-color: rgb(140, 197, 222);
+
+  color: #ffff;
+
+  transition: 120ms;
+}
+
+.heigth{
+
+  height: 80vh;
+
+}
+
+
+

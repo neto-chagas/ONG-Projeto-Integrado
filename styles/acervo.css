@@ -1,0 +1,16 @@
+@import url(./index.css);
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,200&display=swap");
+
+.livros {
+    
+  height: 25rem;
+
+  box-shadow: -2px -2px 34px -5px rgba(0,0,0,0.61);
+}
+
+.livros:hover {
+  box-shadow: -2px -2px 34px -5px rgba(0,0,0,0.61);
+  transform: scale(1.1);
+  transition: 0.5s;
+}
