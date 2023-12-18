@@ -89,7 +89,7 @@ function enviar(event) {
   usuarios.push(usuario);
   localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-  location.href = "entrar.html";
+  usuarios.location.href = "entrar.html";
 }
 
 // Função para aplicar máscara de CPF
@@ -181,3 +181,21 @@ window.onload = function () {
       }
     });
 };
+// Função para remover um usuário do Local Storage
+function removerUsuario(username) {
+  var usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  // Find the index of the user with the given username
+  var index = usuarios.findIndex(function (user) {
+    return user.username === username;
+  });
+
+  // Remove the user from the array
+  if (index !== -1) {
+    usuarios.splice(index, 1);
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+  }
+}
+
+// Chamada da função para remover o usuário com o username "joao123"
+removerUsuario("joao123");
