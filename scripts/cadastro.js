@@ -86,6 +86,8 @@ function enviar(event) {
     return;
   }
 
+  alert("Cadastro realizado com sucesso!");
+
   usuarios.push(usuario);
   localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
