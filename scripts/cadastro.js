@@ -40,22 +40,56 @@ function enviar(event) {
     !cpf
   ) {
     alert("Todos os campos são obrigatórios.");
-    return false;
+    return;
   }
 
   // Validações de formato
   if (!validarEmail(email)) {
     alert("O endereço de e-mail não é válido.");
-    return false;
+    return;
   }
 
   if (!validarCPF(cpf)) {
     alert("O CPF não é válido.");
-    return false;
+    return;
   }
 
-  // Se todas as validações passarem, retorna true
-  return true;
+  const usuario = {
+    nome,
+    sobrenome,
+    email,
+    senha,
+    celular,
+    rua,
+    numero,
+    bairro,
+    cep,
+    cpf,
+  };
+
+  const usuariosStorage = localStorage.getItem("usuarios");
+
+  let usuarios;
+
+  if (usuariosStorage) {
+    usuarios = JSON.parse(usuariosStorage);
+  } else {
+    usuarios = [];
+  }
+
+  if (
+    usuarios.find(function (u) {
+      return u.email === usuario.email;
+    })
+  ) {
+    alert("Já existe um usuário com este e-mail.");
+    return;
+  }
+
+  usuarios.push(usuario);
+  localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+  location.href = "entrar.html";
 }
 
 // Função para aplicar máscara de CPF
@@ -64,7 +98,8 @@ function mascaraCPF(input) {
   valor = valor.replace(/\D/g, ""); // Remove tudo o que não é dígito
   valor = valor.replace(/(\d{3})(\d)/, "$1.$2"); // Insere um ponto entre o terceiro e o quarto dígitos
   valor = valor.replace(/(\d{3})(\d)/, "$1.$2"); // Insere um ponto entre o terceiro e o quarto dígitos
-  valor = valor.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Insere um hífen entre o terceiro e o quarto dígitos
+  valor = valor.replace(/^(\d{3}\.\d{3}\.\d{3})(\d{1,2}).*$/, "$1-$2"); // Insere um hífen entre o terceiro e o quarto dígitos
+
   input.value = valor;
 }
 
@@ -97,22 +132,29 @@ function validarCPF(cpf) {
   var soma = 0;
   var resto;
 
-  if (cpf == "00000000000") return false;
+  if (cpf === "000.000.000-00") return false;
+
+  const reg = /(\d{3})\.(\d{3})\.(\d{3})-(\d{2})/g;
+
+  cpf = cpf.replace(reg, "$1$2$3$4");
 
   for (i = 1; i <= 9; i++)
     soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i);
   resto = (soma * 10) % 11;
 
-  if (resto == 10 || resto == 11) resto = 0;
-  if (resto != parseInt(cpf.substring(9, 10))) return false;
+  if (resto === 10 || resto === 11) resto = 0;
+  if (resto !== parseInt(cpf.substring(9, 10))) return false;
 
   soma = 0;
+
   for (i = 1; i <= 10; i++)
     soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i);
   resto = (soma * 10) % 11;
 
-  if (resto == 10 || resto == 11) resto = 0;
-  if (resto != parseInt(cpf.substring(10, 11))) return false;
+  if (resto === 10 || resto === 11) resto = 0;
+
+  if (resto !== parseInt(cpf.substring(10, 11))) return false;
+
   return true;
 }
 
