@@ -12,24 +12,20 @@ function enviar(event) {
   // Validações de campos vazios
   if (!email || !senha) {
     alert("Todos os campos são obrigatórios.");
-    return false;
+    return;
   }
 
   if (!validarEmail(email)) {
     alert("O endereço de e-mail não é válido.");
-    return false;
+    return;
   }
 
-  if (senhaInput.value.length < 8) {
+  if (senhaInput.value.length < 4) {
     alert("A senha não é válida.");
-    return false;
+    return;
   }
 
-  registrarUsuario(senha, email);
-
-  // Se todas as validações passarem, retorna true
-  alert("E-mail e senha válidos!");
-  return true;
+  entrar(senha, email);
 }
 
 // Função para validar um endereço de e-mail
@@ -40,18 +36,43 @@ function validarEmail(email) {
 }
 
 // Função para registrar um novo usuário
-function registrarUsuario(senha, email) {
+function entrar(senha, email) {
   // Cria um objeto de usuário
   let usuario = {
     senha,
     email,
   };
 
-  // Converte o objeto de usuário em uma string JSON
-  let usuarioJSON = JSON.stringify(usuario);
+  const usuariosStorage = localStorage.getItem("usuarios");
 
-  // Armazena o usuário no LocalStorage
-  localStorage.setItem(email, usuarioJSON);
+  if (!usuariosStorage) {
+    alert("Usuário não encontrado.");
+    return;
+  }
+
+  const usuarios = JSON.parse(usuariosStorage);
+
+  // Verifica se o usuário existe
+  const usuarioEncontrado = usuarios.find(function (u) {
+    return u.email === usuario.email;
+  });
+
+  if (!usuarioEncontrado) {
+    alert("Usuário não encontrado.");
+    return;
+  }
+
+  // Verifica se a senha está correta
+  if (usuarioEncontrado.senha !== usuario.senha) {
+    alert("Senha incorreta.");
+    return;
+  }
+
+  // Salva o usuário no LocalStorage
+  localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+
+  // Redireciona para a página de perfil
+  location.href = "index.html";
 }
 
 // Função para obter um usuário
