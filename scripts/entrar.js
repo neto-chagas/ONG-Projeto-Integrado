@@ -43,8 +43,8 @@ function validarEmail(email) {
 function registrarUsuario(senha, email) {
   // Cria um objeto de usuário
   let usuario = {
-    senha: senha,
-    email: email,
+    senha,
+    email,
   };
 
   // Converte o objeto de usuário em uma string JSON
